@@ -18,5 +18,6 @@ public class MainActivity extends AppCompatActivity {
         dishButton.setOnClickListener(v -> startActivity(new Intent(this, Dish.class)));
         ingredientsButton.setOnClickListener(v -> startActivity(new Intent(this, Ingredients.class)));
         creditsButton.setOnClickListener(v -> startActivity(new Intent(this, Credits.class)));
+        previousFoodsButton.setOnClickListener(v -> startActivity(new Intent(this, PreviousFoods.class)));
     }
 }
