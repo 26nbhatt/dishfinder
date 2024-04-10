@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:text="Dish Finder"
         android:textAlignment="center"
-        android:textSize="100dp"
+        android:textSize="100sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -33,7 +33,7 @@
         app:layout_constraintVertical_bias="0.565" />
 
     <Button
-        android:id="@+id/enterIngredients"
+        android:id="@+id/ingredientsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Enter Ingredients"
