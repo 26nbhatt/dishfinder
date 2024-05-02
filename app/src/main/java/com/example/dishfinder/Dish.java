@@ -4,6 +4,7 @@ package com.example.dishfinder;
 // Import necessary classes for activity, UI components, and AI interaction
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.widget.Button;
 // TextInputEditText for user text input
 import android.widget.SeekBar;
@@ -38,6 +39,7 @@ public class Dish extends AppCompatActivity {
     public SeekBar costBar;
 
     // Initialize Generative AI model
+    // source: https://ai.google.dev/gemini-api/docs/get-started/android#java_1
     GenerativeModelFutures model = GenerativeModelFutures.from(new GenerativeModel("gemini-pro", "AIzaSyBE227sWGV6DVxTKaIVYraxt3vjZvhZq6U"));
 
     @Override
@@ -92,7 +94,13 @@ public class Dish extends AppCompatActivity {
             public void onStopTrackingTouch(SeekBar seekBar) {}
         });
 
-        // Set on-click listener for recipe button navigating to recipe view)
-        recipeButton1.setOnClickListener(v -> startActivity(new Intent(this, Recipe.class)));
+        // Set on-click listener for recipe button navigating to recipe view
+        recipeButton1.setOnClickListener(v -> {
+            if (!TextUtils.isEmpty(dish.getText())) {
+                Intent intent = new Intent(this, Recipe.class);
+                intent.putExtra("dish", dish.getText().toString()).putExtra("ingredients", ingredients.getText());
+                startActivity(intent);
+            }
+        });
     }
 }

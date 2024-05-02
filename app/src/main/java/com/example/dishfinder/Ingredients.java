@@ -4,6 +4,7 @@ package com.example.dishfinder;
 // Import necessary classes for activity, UI components, and AI interaction
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -32,7 +33,8 @@ public class Ingredients extends AppCompatActivity {
     // Declare text view to display generated dish
     public TextView dish;
 
-    // Initialize Generative AI model (replace with your actual model ID and API key)
+    // Initialize Generative AI model
+    // source: https://ai.google.dev/gemini-api/docs/get-started/android#java_1
     GenerativeModelFutures model = GenerativeModelFutures.from(new GenerativeModel("gemini-pro", "AIzaSyBE227sWGV6DVxTKaIVYraxt3vjZvhZq6U"));
 
     @Override
@@ -71,6 +73,12 @@ public class Ingredients extends AppCompatActivity {
         });
 
         // Set on-click listener for recipe button navigating to recipe view
-        recipeButton2.setOnClickListener(v -> startActivity(new Intent(this, Recipe.class)));
+        recipeButton2.setOnClickListener(v -> {
+            if (!TextUtils.isEmpty(ingredients.getText())) {
+                Intent intent = new Intent(this, Recipe.class);
+                intent.putExtra("dish", dish.getText().toString()).putExtra("ingredients", ingredients.getText().toString());
+                startActivity(intent);
+            }
+        });
     }
 }
