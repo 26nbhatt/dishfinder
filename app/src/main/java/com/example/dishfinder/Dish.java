@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Button;
 // TextInputEditText for user text input
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -38,6 +39,8 @@ public class Dish extends AppCompatActivity {
     // Declare seek bar for user to specify budget
     public SeekBar costBar;
 
+    public ImageView returnView1;
+
     // Initialize Generative AI model
     // source: https://ai.google.dev/gemini-api/docs/get-started/android#java_1
     GenerativeModelFutures model = GenerativeModelFutures.from(new GenerativeModel("gemini-pro", "AIzaSyBE227sWGV6DVxTKaIVYraxt3vjZvhZq6U"));
@@ -54,6 +57,7 @@ public class Dish extends AppCompatActivity {
         ingredients = findViewById(R.id.generatedIngredients);
         costView = findViewById(R.id.costView);
         costBar = findViewById(R.id.costBar);
+        returnView1 = findViewById(R.id.returnView1);
 
         // Create a thread executor
         Executor executor = Runnable::run;
@@ -96,11 +100,12 @@ public class Dish extends AppCompatActivity {
 
         // Set on-click listener for recipe button navigating to recipe view
         recipeButton1.setOnClickListener(v -> {
-            if (!TextUtils.isEmpty(dish.getText())) {
+            if (!TextUtils.isEmpty(dish.getText()) && !ingredients.getText().equals("")) {
                 Intent intent = new Intent(this, Recipe.class);
                 intent.putExtra("dish", dish.getText().toString()).putExtra("ingredients", ingredients.getText());
                 startActivity(intent);
             }
         });
+        returnView1.setOnClickListener(v -> startActivity(new Intent(this, MainActivity.class)));
     }
 }

@@ -11,7 +11,7 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
 
     // Declare buttons for different functionalities
-    public Button dishButton, ingredientsButton, creditsButton, previousFoodsButton;
+    public Button dishButton, ingredientsButton, imageButton, creditsButton, previousFoodsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,12 +21,14 @@ public class MainActivity extends AppCompatActivity {
         // Find buttons by their IDs in the layout
         dishButton = findViewById(R.id.dishButton);
         ingredientsButton = findViewById(R.id.ingredientsButton);
+        imageButton = findViewById(R.id.imageButton);
         creditsButton = findViewById(R.id.creditsButton);
         previousFoodsButton = findViewById(R.id.previousFoodsButton);
 
         // Set on-click listeners for each button
         dishButton.setOnClickListener(v -> startActivity(new Intent(this, Dish.class)));
         ingredientsButton.setOnClickListener(v -> startActivity(new Intent(this, Ingredients.class)));
+        imageButton.setOnClickListener(v -> startActivity(new Intent(this, Image.class)));
         creditsButton.setOnClickListener(v -> startActivity(new Intent(this, Credits.class)));
         previousFoodsButton.setOnClickListener(v -> startActivity(new Intent(this, PreviousFoods.class)));
     }

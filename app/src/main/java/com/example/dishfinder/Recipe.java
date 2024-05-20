@@ -5,6 +5,7 @@ package com.example.dishfinder;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +26,8 @@ public class Recipe extends AppCompatActivity {
     public Button updateButton;
     public TextView dishName, generatedRecipe;
 
+    public ImageView returnView4;
+
     // Initialize Generative AI model
     // source: https://ai.google.dev/gemini-api/docs/get-started/android#java_1
     GenerativeModelFutures model = GenerativeModelFutures.from(new GenerativeModel("gemini-pro", "AIzaSyBE227sWGV6DVxTKaIVYraxt3vjZvhZq6U"));
@@ -38,6 +41,7 @@ public class Recipe extends AppCompatActivity {
         updateButton = findViewById(R.id.updateButton);
         dishName = findViewById(R.id.dishName);
         generatedRecipe = findViewById(R.id.generatedRecipe);
+        returnView4 = findViewById(R.id.returnView4);
 
         // Get the dish name and ingredients from the previous activity
         Intent intent = getIntent();
@@ -66,5 +70,6 @@ public class Recipe extends AppCompatActivity {
 
         // Set on-click listener for update button navigating to previous foods
         updateButton.setOnClickListener(v -> startActivity(new Intent(this, PreviousFoods.class)));
+        returnView4.setOnClickListener(v -> startActivity(new Intent(this, MainActivity.class)));
     }
 }
